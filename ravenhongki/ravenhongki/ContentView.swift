@@ -10,15 +10,28 @@ import SwiftUI
 struct ContentView: View {
     @State private var showingSheet: Bool = false
     @State private var title: String = ""
-    @State private var content: String = ""
+    @State private var contents: String = ""
     var body: some View {
         NavigationView {
-            NavigationLink (destination: PostWriteView(title: $title, content: $content), label: {
-                Image(systemName: "plus.circle")
-            })
-            .navigationBarItems(leading: Text("dd"))
+            VStack{
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.showingSheet.toggle()
+                    }, label: {
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                        
+                    })
+                    .fullScreenCover(isPresented: $showingSheet) {
+                        PostWriteView(showingSheet: $showingSheet, title: $title, contents: $contents)
+                    }
+                    .padding()
+                }
+            }
         }
-        
     }
 }
     
