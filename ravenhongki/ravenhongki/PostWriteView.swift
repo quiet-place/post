@@ -8,23 +8,27 @@
 import SwiftUI
 
 struct PostWriteView: View {
-    @State private var showingSheet: Bool = false
-    @State private var title: String = ""
-    @State private var content: String = ""
+    @Binding var title: String
+    @Binding var content: String
+    
     var body: some View {
         NavigationView {
             VStack {
                 TextField("제목", text: $title)
+                TextField("내용을 입력하세요", text: $content)
+                Spacer()
                 
             }
-            .navigationTitle("TreeName")
-            .navigationBarTitleDisplayMode(.inline)
+            
         }
     }
 }
-
+/*
 struct PostWriteView_Previews: PreviewProvider {
+    @State var title: String = ""
+    @State var content: String = ""
     static var previews: some View {
-        PostWriteView()
+        PostWriteView(title: $title, content: $content)
     }
 }
+*/

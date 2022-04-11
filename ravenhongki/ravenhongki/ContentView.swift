@@ -13,27 +13,15 @@ struct ContentView: View {
     @State private var content: String = ""
     var body: some View {
         NavigationView {
-            
-            Button(action: {
-                self.showingSheet = true
-            }) {
-                Text("New Post")
-            }.fullScreenCover(isPresented: $showingSheet) {
-                NavigationView {
-                    VStack {
-                        TextField("제목", text: $title)
-                        
-                    }
-                    .navigationTitle("TreeName")
-                    .navigationBarTitleDisplayMode(.inline)
-                }
-            }
-            
-            
+            NavigationLink (destination: PostWriteView(title: $title, content: $content), label: {
+                Image(systemName: "plus.circle")
+            })
+            .navigationBarItems(leading: Text("dd"))
         }
         
     }
 }
+    
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
